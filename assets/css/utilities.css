@@ -1,0 +1,155 @@
+/* HTMX Loading Indicators */
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+    opacity: 1;
+}
+
+/* Dark Mode Utilities */
+.dark .dark-invert {
+    filter: invert(1);
+}
+
+/* Navigation */
+.nav-link {
+    color: var(--text-color-light-70);
+    font-weight: bold;
+    font-size: 0.875rem;
+    text-transform: lowercase;
+    transition: color 200ms;
+}
+
+.nav-link:hover {
+    color: var(--text-color-light);
+}
+
+.dark .nav-link {
+    color: var(--text-color-dark-70);
+}
+
+.dark .nav-link:hover {
+    color: var(--text-color-dark);
+}
+
+.mobile-nav-link {
+    color: var(--text-color-light-80);
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: lowercase;
+    transition: color 200ms;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.mobile-nav-link:hover {
+    color: var(--text-color-light);
+}
+
+.dark .mobile-nav-link {
+    color: var(--text-color-dark-80);
+}
+
+.dark .mobile-nav-link:hover {
+    color: var(--text-color-dark);
+}
+
+/* Active States */
+.nav-link.active {
+    color: var(--text-color-light);
+}
+
+.dark .nav-link.active {
+    color: var(--text-color-dark);
+}
+
+.mobile-nav-link.active {
+    color: var(--text-color-light);
+}
+
+.dark .mobile-nav-link.active {
+    color: var(--text-color-dark);
+}
+
+/* Custom CSS Variables */
+:root {
+    --text-color-light: #272932;
+    --text-color-light-70: rgba(39, 41, 50, 0.7);
+    --text-color-light-80: rgba(39, 41, 50, 0.8);
+    --text-color-dark: #E7ECEF;
+    --text-color-dark-70: rgba(231, 236, 239, 0.7);
+    --text-color-dark-80: rgba(231, 236, 239, 0.8);
+}
+
+/* Card Styles */
+.card {
+    @apply bg-white/50 dark:bg-custom-dark-bg/50 rounded-lg shadow-sm p-6 sm:p-8;
+}
+
+/* Typography */
+.heading-primary {
+    @apply text-2xl sm:text-3xl font-bold text-custom-light-heading dark:text-custom-dark-heading mb-6;
+}
+
+.heading-secondary {
+    @apply text-xl font-semibold text-custom-light-heading dark:text-custom-dark-heading mb-4;
+}
+
+.text-body {
+    @apply text-custom-light-text dark:text-custom-dark-text;
+}
+
+/* Buttons */
+.btn-primary {
+    @apply bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors;
+}
+
+.btn-danger {
+    @apply text-red-600 hover:text-red-800;
+}
+
+.btn-edit {
+    @apply text-blue-600 hover:text-blue-800;
+}
+
+/* List Items */
+.timeline-item {
+    @apply border-l-4 pl-4;
+}
+
+.timeline-item-primary {
+    @apply border-custom-light-accent1 dark:border-custom-dark-accent1;
+}
+
+.timeline-item-secondary {
+    @apply border-custom-light-accent2 dark:border-custom-dark-accent2;
+}
+
+.timeline-item-tertiary {
+    @apply border-custom-light-accent3 dark:border-custom-dark-accent3;
+}
+
+/* Skill Tags */
+.skill-tag {
+    @apply bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700;
+}
+
+/* Layout */
+.container-main {
+    @apply max-w-4xl mx-auto;
+}
+
+/* Navigation */
+.nav-link {
+    @apply text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text;
+}
+
+.nav-container {
+    @apply sticky top-0 z-50 bg-white/80 dark:bg-custom-dark-bg/80 border-b border-custom-light-nav/10 dark:border-custom-dark-nav/10 backdrop-blur-sm;
+}

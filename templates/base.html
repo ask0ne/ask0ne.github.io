@@ -6,6 +6,7 @@
     <title>{% block title %}atharva{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <link rel="stylesheet" href="/assets/css/utilities.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -37,21 +38,6 @@
             }
         }
     </script>
-    <style>
-        .htmx-indicator {
-            opacity: 0;
-            transition: opacity 300ms ease-in;
-        }
-        .htmx-request .htmx-indicator {
-            opacity: 1;
-        }
-        .htmx-request.htmx-indicator {
-            opacity: 1;
-        }
-        .dark .dark\:invert {
-            filter: invert(1);
-        }
-    </style>
 </head>
 <body class="bg-custom-light-bg text-custom-light-text dark:bg-custom-dark-bg dark:text-custom-dark-text min-h-screen transition-colors duration-200">
     <!-- Mobile-first navigation -->
@@ -65,28 +51,28 @@
                             hx-get="/section/me" 
                             hx-target="#main-content" 
                             hx-indicator="#loading"
-                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            class="nav-link">
                             me
                         </button>
                         <button 
                             hx-get="/section/cv" 
                             hx-target="#main-content" 
                             hx-indicator="#loading"
-                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            class="nav-link">
                             cv
                         </button>
                         <button 
                             hx-get="/section/scribblings" 
                             hx-target="#main-content" 
                             hx-indicator="#loading"
-                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            class="nav-link">
                             scribblings
                         </button>
                         <button 
                             hx-get="/section/mystery" 
                             hx-target="#main-content" 
                             hx-indicator="#loading"
-                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            class="nav-link">
                             ???
                         </button>
                     </div>
@@ -117,28 +103,28 @@
                     hx-get="/section/me" 
                     hx-target="#main-content" 
                     hx-indicator="#loading"
-                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    class="mobile-nav-link">
                     me
                 </button>
                 <button 
                     hx-get="/section/cv" 
                     hx-target="#main-content" 
                     hx-indicator="#loading"
-                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    class="mobile-nav-link">
                     cv
                 </button>
                 <button 
                     hx-get="/section/scribblings" 
                     hx-target="#main-content" 
                     hx-indicator="#loading"
-                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    class="mobile-nav-link">
                     scribblings
                 </button>
                 <button 
                     hx-get="/section/mystery" 
                     hx-target="#main-content" 
                     hx-indicator="#loading"
-                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    class="mobile-nav-link">
                     ?
                 </button>
             </div>
@@ -239,13 +225,12 @@
         document.addEventListener('htmx:afterRequest', function(evt) {
             // Remove active class from all nav links
             document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-                link.classList.add('text-custom-light-text/70', 'dark:text-custom-dark-text/70');
+                link.classList.remove('active');
             });
 
             // Add active class to clicked link
             if (evt.detail.elt.classList.contains('nav-link') || evt.detail.elt.classList.contains('mobile-nav-link')) {
-                evt.detail.elt.classList.remove('text-custom-light-text/70', 'dark:text-custom-dark-text/70');
-                evt.detail.elt.classList.add('text-custom-light-text', 'dark:text-custom-dark-text');
+                evt.detail.elt.classList.add('active');
             }
         });
     </script>
