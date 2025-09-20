@@ -48,6 +48,7 @@
                 <div class="hidden md:block">
                     <div class="flex items-baseline space-x-8">
                         <button 
+                            hx-trigger="load, click"
                             hx-get="/section/me" 
                             hx-target="#main-content" 
                             hx-indicator="#loading"

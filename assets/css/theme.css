@@ -1,91 +1,180 @@
 :root {
     /* Light mode colors */
     --light-bg: #E7ECEF;
-    --light-nav: #0F7173;
-    --light-heading: #F05D5E;
     --light-text: #272932;
+    --light-accent: #D8A47F;
 
     /* Dark mode colors */
     --dark-bg: #272932;
-    --dark-nav: #0F7173;
-    --dark-heading: #D8A47F;
     --dark-text: #E7ECEF;
+    --dark-accent: #D8A47F;
 }
 
-/* Base styles */
+/* Base styles - Default to dark mode */
 body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    min-height: 100vh;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Light mode override */
+html:not(.dark) body {
     background-color: var(--light-bg);
     color: var(--light-text);
-    min-height: 100vh;
-    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Navigation */
+/* Navigation - Default to dark mode */
 .nav-container {
-    background-color: var(--light-bg);
-    border-bottom: 1px solid var(--light-nav);
+    background-color: var(--dark-bg);
     backdrop-filter: blur(8px);
     position: sticky;
     top: 0;
     z-index: 50;
 }
 
-.nav-link {
-    color: var(--light-nav);
+/* Light mode override */
+html:not(.dark) .nav-container {
+    background-color: var(--light-bg);
+}
+
+/* Links and navigation - Default to dark mode */
+a[href], 
+.nav-link, 
+.mobile-nav-link,
+.brand {
+    color: var(--dark-accent);
     font-weight: 700;
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+/* Light mode override */
+html:not(.dark) a[href], 
+html:not(.dark) .nav-link, 
+html:not(.dark) .mobile-nav-link,
+html:not(.dark) .brand {
+    color: var(--light-accent);
+}
+
+.nav-link {
     text-transform: lowercase;
-    font-size: 1.2em; /* Increase font size by 20% */
+    font-size: 1.2em;
 }
 
 .brand {
-    color: var(--light-heading);
-    font-weight: 700;
     font-size: 1.25rem;
+    text-decoration: none;
 }
 
-/* Headings */
+/* Hover states */
+a[href]:hover,
+.nav-link:hover,
+.mobile-nav-link:hover {
+    opacity: 0.8;
+}
+
+/* Headings - Default to dark mode */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--light-heading);
+    color: var(--dark-accent);
     font-weight: 700;
 }
 
-/* Content section */
-.content-section {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 0.5rem;
-    backdrop-filter: blur(8px);
+/* Light mode override */
+html:not(.dark) h1, 
+html:not(.dark) h2, 
+html:not(.dark) h3, 
+html:not(.dark) h4, 
+html:not(.dark) h5, 
+html:not(.dark) h6 {
+    color: var(--light-accent);
 }
 
-/* Dark mode styles */
-.dark body {
+#theme-toggle {
+    padding: 0 1rem;
+}
+
+#mobile-menu-btn {
+    color: var(--dark-accent);
+    transition: opacity 0.2s ease;
+}
+
+#mobile-menu-btn:hover {
+    opacity: 0.8;
+}
+
+html:not(.dark) #mobile-menu-btn {
+    color: var(--light-accent);
+}
+
+/* These styles are now handled by the default dark mode styles above */
+
+/* Buttons - Default to dark mode */
+.btn-primary {
+    background-color: var(--dark-accent);
+    color: var(--dark-bg);
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--dark-accent);
+    border: 1px solid var(--dark-accent);
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-accent);
+    color: var(--dark-bg);
+}
+
+html:not(.dark) .btn-primary {
+    background-color: var(--light-accent);
+    color: var(--light-bg);
+}
+
+html:not(.dark) .btn-secondary {
+    color: var(--light-accent);
+    border-color: var(--light-accent);
+}
+
+html:not(.dark) .btn-secondary:hover {
+    background-color: var(--light-accent);
+    color: var(--light-bg);
+}
+
+/* Content sections - Default to dark mode */
+.content-section {
     background-color: var(--dark-bg);
     color: var(--dark-text);
 }
 
-.dark .nav-container {
-    background-color: var(--dark-bg);
-    border-bottom-color: var(--dark-nav);
+html:not(.dark) .content-section {
+    background-color: var(--light-bg);
+    color: var(--light-text);
 }
 
-.dark .nav-link {
-    color: var(--dark-nav);
+/* Skill tags - Default to dark mode */
+.skill-tag {
+    background-color: transparent;
+    border: 1px solid var(--dark-accent);
+    color: var(--dark-accent);
 }
 
-.dark .brand {
-    color: var(--dark-heading);
+html:not(.dark) .skill-tag {
+    border-color: var(--light-accent);
+    color: var(--light-accent);
 }
 
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-    color: var(--dark-heading);
+/* Override framework colors */
+[class*="text-"] {
+    color: inherit !important;
 }
 
-.dark .content-section {
-    background-color: rgba(39, 41, 50, 0.5);
+[class*="bg-"] {
+    background-color: inherit !important;
 }
 
 /* Loading indicator */
