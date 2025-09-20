@@ -1,0 +1,61 @@
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white/50 dark:bg-custom-dark-bg/50 rounded-lg shadow-sm p-6 sm:p-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-custom-light-heading dark:text-custom-dark-heading">Scribblings</h2>
+            <button 
+                hx-get="/blog/new" 
+                hx-target="#blog-content"
+                class="bg-custom-light-nav text-custom-dark-text px-4 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm dark:bg-custom-dark-nav">
+                New Post
+            </button>
+        </div>
+
+        <div id="blog-content">
+            {% if posts %}
+                <div class="space-y-6">
+                    {% for post in posts %}
+                    <article class="border-b border-custom-light-nav/10 dark:border-custom-dark-nav/10 pb-6 last:border-b-0">
+                        <h3 class="text-xl font-semibold text-custom-light-heading dark:text-custom-dark-heading mb-2">
+                            <button 
+                                hx-get="/blog/{{ post.id }}" 
+                                hx-target="#blog-content"
+                                class="hover:text-custom-light-nav dark:hover:text-custom-dark-nav transition-colors text-left">
+                                {{ post.title }}
+                            </button>
+                        </h3>
+                        <p class="text-custom-light-text dark:text-custom-dark-text mb-3">{{ post.content[:150] }}...</p>
+                        <div class="flex items-center justify-between text-sm text-custom-light-text/70 dark:text-custom-dark-text/70">
+                            <time>{{ post.date }}</time>
+                            <div class="space-x-2">
+                                <button 
+                                    hx-get="/blog/{{ post.id }}/edit" 
+                                    hx-target="#blog-content"
+                                    class="text-custom-light-accent1 hover:text-custom-light-accent2 dark:text-custom-dark-accent1 dark:hover:text-custom-dark-accent2">
+                                    Edit
+                                </button>
+                                <button 
+                                    hx-delete="/blog/{{ post.id }}" 
+                                    hx-target="#blog-content"
+                                    hx-confirm="Are you sure you want to delete this post?"
+                                    class="text-custom-light-accent2 hover:text-custom-light-accent1 dark:text-custom-dark-accent2 dark:hover:text-custom-dark-accent1">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-8">
+                    <p class="text-gray-500 mb-4">No posts yet. Start writing!</p>
+                    <button 
+                        hx-get="/blog/new" 
+                        hx-target="#blog-content"
+                        class="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                        Write Your First Post
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

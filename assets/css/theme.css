@@ -1,0 +1,126 @@
+:root {
+    /* Light mode colors */
+    --light-bg: #E7ECEF;
+    --light-nav: #0F7173;
+    --light-heading: #F05D5E;
+    --light-text: #272932;
+
+    /* Dark mode colors */
+    --dark-bg: #272932;
+    --dark-nav: #0F7173;
+    --dark-heading: #D8A47F;
+    --dark-text: #E7ECEF;
+}
+
+/* Base styles */
+body {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Navigation */
+.nav-container {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--light-nav);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nav-link {
+    color: var(--light-nav);
+    font-weight: 700;
+    text-transform: lowercase;
+    font-size: 1.2em; /* Increase font size by 20% */
+}
+
+.brand {
+    color: var(--light-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--light-heading);
+    font-weight: 700;
+}
+
+/* Content section */
+.content-section {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+}
+
+/* Dark mode styles */
+.dark body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark .nav-container {
+    background-color: var(--dark-bg);
+    border-bottom-color: var(--dark-nav);
+}
+
+.dark .nav-link {
+    color: var(--dark-nav);
+}
+
+.dark .brand {
+    color: var(--dark-heading);
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+    color: var(--dark-heading);
+}
+
+.dark .content-section {
+    background-color: rgba(39, 41, 50, 0.5);
+}
+
+/* Loading indicator */
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.htmx-request .htmx-indicator,
+.htmx-request.htmx-indicator {
+    opacity: 1;
+}
+
+.loading-spinner {
+    border: 2px solid transparent;
+    border-bottom: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Mobile menu */
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu.show {
+        display: block;
+    }
+}

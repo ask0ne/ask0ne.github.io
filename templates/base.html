@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}atharva{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        custom: {
+                            dark: {
+                                bg: '#272932',
+                                nav: '#0F7173',
+                                heading: '#D8A47F',
+                                text: '#E7ECEF',
+                                accent1: '#0F7173',
+                                accent2: '#D8A47F',
+                                accent3: '#91A9B4'
+                            },
+                            light: {
+                                bg: '#E7ECEF',
+                                nav: '#0F7173',
+                                heading: '#F05D5E',
+                                text: '#272932',
+                                accent1: '#0F7173',
+                                accent2: '#F05D5E',
+                                accent3: '#0F7173'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .htmx-indicator {
+            opacity: 0;
+            transition: opacity 300ms ease-in;
+        }
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+        }
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+        }
+        .dark .dark\:invert {
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body class="bg-custom-light-bg text-custom-light-text dark:bg-custom-dark-bg dark:text-custom-dark-text min-h-screen transition-colors duration-200">
+    <!-- Mobile-first navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-custom-dark-bg/80 border-b border-custom-light-nav/10 dark:border-custom-dark-nav/10 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="flex items-baseline space-x-8">
+                        <button 
+                            hx-get="/section/me" 
+                            hx-target="#main-content" 
+                            hx-indicator="#loading"
+                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            me
+                        </button>
+                        <button 
+                            hx-get="/section/cv" 
+                            hx-target="#main-content" 
+                            hx-indicator="#loading"
+                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            cv
+                        </button>
+                        <button 
+                            hx-get="/section/scribblings" 
+                            hx-target="#main-content" 
+                            hx-indicator="#loading"
+                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            scribblings
+                        </button>
+                        <button 
+                            hx-get="/section/mystery" 
+                            hx-target="#main-content" 
+                            hx-indicator="#loading"
+                            class="nav-link text-custom-light-text/70 hover:text-custom-light-text font-bold text-sm transition-colors lowercase dark:text-custom-dark-text/70 dark:hover:text-custom-dark-text">
+                            ???
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Logo/Brand -->
+                <div class="flex-shrink-0">
+                    <button id="theme-toggle" class="text-xl font-bold text-gray-900 dark:text-white hover:opacity-80 transition-opacity">
+                        atharva
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-custom-dark-bg border-t border-custom-light-nav/10 dark:border-custom-dark-nav/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button 
+                    hx-get="/section/me" 
+                    hx-target="#main-content" 
+                    hx-indicator="#loading"
+                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    me
+                </button>
+                <button 
+                    hx-get="/section/cv" 
+                    hx-target="#main-content" 
+                    hx-indicator="#loading"
+                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    cv
+                </button>
+                <button 
+                    hx-get="/section/scribblings" 
+                    hx-target="#main-content" 
+                    hx-indicator="#loading"
+                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    scribblings
+                </button>
+                <button 
+                    hx-get="/section/mystery" 
+                    hx-target="#main-content" 
+                    hx-indicator="#loading"
+                    class="mobile-nav-link text-custom-light-text/80 hover:text-custom-light-text dark:text-custom-dark-text/80 dark:hover:text-custom-dark-text block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors lowercase">
+                    ?
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="htmx-indicator fixed top-20 left-1/2 transform -translate-x-1/2 z-40">
+        <div class="bg-white/80 dark:bg-custom-dark-bg/80 rounded-lg shadow-lg backdrop-blur-sm px-4 py-2 flex items-center space-x-2">
+            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-custom-light-nav dark:border-custom-dark-nav"></div>
+            <span class="text-sm text-custom-light-text dark:text-custom-dark-text">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <main id="main-content" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% block content %}
+        <!-- Default content - Me section -->
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white/50 dark:bg-custom-dark-bg/50 rounded-lg shadow-sm p-6 sm:p-8 backdrop-blur-sm">
+                <h2 class="text-2xl sm:text-3xl font-bold text-custom-light-heading dark:text-custom-dark-heading mb-6">About Me</h2>
+                <div class="prose max-w-none">
+                    <p class="text-lg text-custom-light-text dark:text-custom-dark-text mb-4">
+                        Experienced software engineer interested in building cool stuff, usually from scratch.
+                    </p>
+                    <p class="text-custom-light-text dark:text-custom-dark-text mb-6">
+                        I'm passionate about Python backend development, HTMX, and creating elegant solutions to complex problems. 
+                        My expertise lies in building scalable systems and exploring modern web development patterns.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <h3 class="font-semibold text-custom-light-heading dark:text-custom-dark-heading mb-2">Skills</h3>
+                            <ul class="text-custom-light-text dark:text-custom-dark-text space-y-1">
+                                <li>• Python & FastAPI</li>
+                                <li>• HTMX & Modern Web</li>
+                                <li>• Backend Architecture</li>
+                                <li>• System Design</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-custom-light-heading dark:text-custom-dark-heading mb-2">Interests</h3>
+                            <ul class="text-custom-light-text dark:text-custom-dark-text space-y-1">
+                                <li>• Building from scratch</li>
+                                <li>• Clean code practices</li>
+                                <li>• Performance optimization</li>
+                                <li>• Open source</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    <script>
+        // Theme management
+        const theme = {
+            init() {
+                // Check for saved theme preference or use system preference
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            },
+            toggle() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+            }
+        };
+
+        // Initialize theme
+        theme.init();
+
+        // Theme toggle button
+        document.getElementById('theme-toggle').addEventListener('click', () => theme.toggle());
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Active state management
+        document.addEventListener('htmx:afterRequest', function(evt) {
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                link.classList.add('text-custom-light-text/70', 'dark:text-custom-dark-text/70');
+            });
+
+            // Add active class to clicked link
+            if (evt.detail.elt.classList.contains('nav-link') || evt.detail.elt.classList.contains('mobile-nav-link')) {
+                evt.detail.elt.classList.remove('text-custom-light-text/70', 'dark:text-custom-dark-text/70');
+                evt.detail.elt.classList.add('text-custom-light-text', 'dark:text-custom-dark-text');
+            }
+        });
+    </script>
+</body>
+</html>

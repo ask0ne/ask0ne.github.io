@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Default content - Me section will be loaded here -->
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white rounded-lg shadow-sm p-6 sm:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">About Me</h2>
+        <div class="prose prose-gray max-w-none">
+            <p class="text-lg text-gray-600 mb-4">
+                Experienced software engineer interested in building cool stuff, usually from scratch.
+            </p>
+            <p class="text-gray-600 mb-6">
+                I'm passionate about Python backend development, HTMX, and creating elegant solutions to complex problems. 
+                My expertise lies in building scalable systems and exploring modern web development patterns.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Skills</h3>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Python & FastAPI</li>
+                        <li>• HTMX & Modern Web</li>
+                        <li>• Backend Architecture</li>
+                        <li>• System Design</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Interests</h3>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Building from scratch</li>
+                        <li>• Clean code practices</li>
+                        <li>• Performance optimization</li>
+                        <li>• Open source</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

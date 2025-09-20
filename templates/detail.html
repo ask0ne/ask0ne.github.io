@@ -1,0 +1,32 @@
+<div class="mb-4">
+    <button 
+        hx-get="/section/scribblings" 
+        hx-target="#main-content"
+        class="text-blue-600 hover:text-blue-800 text-sm">
+        ← Back to all posts
+    </button>
+</div>
+
+<article class="prose prose-gray max-w-none">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ post.title }}</h1>
+    <div class="text-sm text-gray-500 mb-6">
+        <time>{{ post.date }}</time>
+    </div>
+    <div class="text-gray-700 whitespace-pre-wrap">{{ post.content }}</div>
+</article>
+
+<div class="mt-8 pt-6 border-t border-gray-200 flex space-x-4">
+    <button 
+        hx-get="/blog/{{ post.id }}/edit" 
+        hx-target="#blog-content"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+        Edit Post
+    </button>
+    <button 
+        hx-delete="/blog/{{ post.id }}" 
+        hx-target="#blog-content"
+        hx-confirm="Are you sure you want to delete this post?"
+        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm">
+        Delete Post
+    </button>
+</div>
