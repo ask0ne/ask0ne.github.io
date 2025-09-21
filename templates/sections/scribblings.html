@@ -1,9 +1,16 @@
 <div class="max-w-4xl mx-auto">
-    <div class="bg-white/50 dark:bg-custom-dark-bg/50 rounded-lg shadow-sm p-6 sm:p-8">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl sm:text-3xl font-bold text-custom-light-heading dark:text-custom-dark-heading">Scribblings</h2>
-        </div>
+    <div class="bg-white/50 dark:bg-custom-dark-bg/50 rounded-lg shadow-sm p-6 sm:p-8 mb-6">
+        <!-- heading -->
+        <h2 class="text-2xl sm:text-3xl font-bold text-custom-light-heading dark:text-custom-dark-heading mb-2">
+            scribblings
+        </h2>
 
+        <!-- muted paragraph (consistent spacing) -->
+        <p class="text-sm text-custom-light-text/70 dark:text-custom-dark-text/70 mb-6">
+            random thoughts, ramblings &amp; anecdotes — short reads and quick notes.
+        </p>
+
+        <!-- actual content (keep blog card format intact) -->
         <div id="blog-content">
             {% if posts %}
                 <div class="space-y-6">
@@ -17,7 +24,7 @@
                                 hx-get="/blog/{{ post.id }}" 
                                 hx-target="#blog-content"
                                 class="hover:text-custom-light-nav dark:hover:text-custom-dark-nav transition-colors text-left">
-                                <p class="text-custom-light-text dark:text-custom-dark-text text-base">{{ post.text[:200] }}{% if post.text|length > 200 %}...{% endif %}</p>
+                                <p class="text-custom-light-text dark:text-custom-dark-text text-base">{{ post.text[:50] }}...</p>
                             </button>
                         </div>
                         {% if post.tags %}
@@ -38,5 +45,6 @@
                 </div>
             {% endif %}
         </div>
+
     </div>
 </div>
