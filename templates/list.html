@@ -2,44 +2,31 @@
     {% if posts %}
         {% for post in posts %}
         <article class="border-b border-gray-200 pb-6 last:border-b-0">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            <div class="text-sm text-gray-500 mb-2">
+                <time>{{ post.created_at.strftime('%B %d, %Y') if post.created_at else 'Date unknown' }}</time>
+            </div>
+            <div class="mb-3">
                 <button 
                     hx-get="/blog/{{ post.id }}" 
                     hx-target="#blog-content"
                     class="hover:text-blue-600 transition-colors text-left">
-                    {{ post.title }}
+                    <p class="text-gray-700 text-base">{{ post.text[:200] }}{% if post.text|length > 200 %}...{% endif %}</p>
                 </button>
-            </h3>
-            <p class="text-gray-600 mb-3">{{ post.content[:150] }}...</p>
-            <div class="flex items-center justify-between text-sm text-gray-500">
-                <time>{{ post.date }}</time>
-                <div class="space-x-2">
-                    <button 
-                        hx-get="/blog/{{ post.id }}/edit" 
-                        hx-target="#blog-content"
-                        class="text-blue-600 hover:text-blue-800">
-                        Edit
-                    </button>
-                    <button 
-                        hx-delete="/blog/{{ post.id }}" 
-                        hx-target="#blog-content"
-                        hx-confirm="Are you sure you want to delete this post?"
-                        class="text-red-600 hover:text-red-800">
-                        Delete
-                    </button>
-                </div>
             </div>
+            {% if post.tags %}
+            <div class="flex flex-wrap gap-2 mt-3">
+                {% for tag in post.tags %}
+                <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
+                    #{{ tag }}
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
         </article>
         {% endfor %}
     {% else %}
         <div class="text-center py-8">
-            <p class="text-gray-500 mb-4">No posts yet. Start writing!</p>
-            <button 
-                hx-get="/blog/new" 
-                hx-target="#blog-content"
-                class="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                Write Your First Post
-            </button>
+            <p class="text-gray-500 mb-4">No blog posts found.</p>
         </div>
     {% endif %}
 </div>

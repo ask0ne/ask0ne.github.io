@@ -8,25 +8,18 @@
 </div>
 
 <article class="prose prose-gray max-w-none">
-    <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ post.title }}</h1>
     <div class="text-sm text-gray-500 mb-6">
-        <time>{{ post.date }}</time>
+        <time>{{ post.created_at.strftime('%B %d, %Y') if post.created_at else 'Date unknown' }}</time>
     </div>
-    <div class="text-gray-700 whitespace-pre-wrap">{{ post.content }}</div>
+    <div class="text-gray-700 whitespace-pre-wrap mb-6">{{ post.text }}</div>
+    
+    {% if post.tags %}
+    <div class="flex flex-wrap gap-2 mt-6">
+        {% for tag in post.tags %}
+        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-sm">
+            #{{ tag }}
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
 </article>
-
-<div class="mt-8 pt-6 border-t border-gray-200 flex space-x-4">
-    <button 
-        hx-get="/blog/{{ post.id }}/edit" 
-        hx-target="#blog-content"
-        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
-        Edit Post
-    </button>
-    <button 
-        hx-delete="/blog/{{ post.id }}" 
-        hx-target="#blog-content"
-        hx-confirm="Are you sure you want to delete this post?"
-        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm">
-        Delete Post
-    </button>
-</div>
