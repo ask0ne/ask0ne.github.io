@@ -199,3 +199,29 @@ p.description-heading {
         margin: 1rem !important
     }
 }
+
+/* Global link standardization - uses accent_colour2 with no underline */
+a[href] {
+    color: var(--accent-colour2) !important;
+    text-decoration: none !important;
+}
+
+a[href]:hover {
+    opacity: 0.8;
+}
+
+/* Ensure buttons and nav elements also follow the standard */
+button[hx-get],
+button[hx-post],
+button[hx-put],
+button[hx-delete] {
+    color: var(--accent-colour2) !important;
+    text-decoration: none !important;
+}
+
+button[hx-get]:hover,
+button[hx-post]:hover,
+button[hx-put]:hover,
+button[hx-delete]:hover {
+    opacity: 0.8;
+}

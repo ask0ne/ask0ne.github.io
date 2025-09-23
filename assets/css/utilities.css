@@ -14,33 +14,27 @@
     filter: invert(1);
 }
 
-/* Navigation */
+/* Navigation - Updated to use standardized accent_colour2 */
 .nav-link {
-    color: var(--text-color-light-70);
+    color: var(--accent-colour2);
     font-weight: bold;
     font-size: 0.875rem;
     text-transform: lowercase;
-    transition: color 200ms;
+    text-decoration: none;
+    transition: opacity 200ms;
 }
 
 .nav-link:hover {
-    color: var(--text-color-light);
-}
-
-.dark .nav-link {
-    color: var(--text-color-dark-70);
-}
-
-.dark .nav-link:hover {
-    color: var(--text-color-dark);
+    opacity: 0.8;
 }
 
 .mobile-nav-link {
-    color: var(--text-color-light-80);
+    color: var(--accent-colour2);
     font-weight: 500;
     font-size: 1rem;
     text-transform: lowercase;
-    transition: color 200ms;
+    text-decoration: none;
+    transition: opacity 200ms;
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
     display: block;
@@ -49,15 +43,7 @@
 }
 
 .mobile-nav-link:hover {
-    color: var(--text-color-light);
-}
-
-.dark .mobile-nav-link {
-    color: var(--text-color-dark-80);
-}
-
-.dark .mobile-nav-link:hover {
-    color: var(--text-color-dark);
+    opacity: 0.8;
 }
 
 /* Active States */
